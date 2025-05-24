@@ -74,7 +74,7 @@ resource "aws_autoscaling_policy" "cpu_target_tracking" {
   value = file("./cwagent_config.json")
 }
 
-- *create the cloudwatch agent config(let it be in json) file*
+- *create the cloudwatch agent config(let it be in json) file i.e cwagent_config.json*
 - ```json
   {
   "agent": {
