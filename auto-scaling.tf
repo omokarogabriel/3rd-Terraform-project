@@ -51,6 +51,10 @@ resource "aws_launch_template" "lt" {
       aws_security_group.allow_ssh.id
     ]
   user_data = filebase64("${path.module}/user_data.sh")
+  iam_instance_profile {
+    name = aws_iam_instance_profile.ec2_instance_profile.name
+  }
+  
 #   associate_public_ip_address = false
   
 
@@ -71,7 +75,19 @@ resource "aws_launch_template" "lt" {
 
 # aws automatic scaling policy
 
+resource "aws_autoscaling_policy" "cpu_target_tracking" {
+  name                   = "${var.project}-cpu-target-tracking"
+  autoscaling_group_name = aws_autoscaling_group.asg.name
+  policy_type            = "TargetTrackingScaling"
 
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+
+    target_value = 50.0
+  }
+}
 
 
 
