@@ -51,7 +51,7 @@ resource "aws_eip" "nat_eip" {
 }
 resource "aws_nat_gateway" "nat_gw" {
   allocation_id = aws_eip.nat_eip.id
-  subnet_id = aws_subnet.public_subnet[0].id
+  subnet_id     = aws_subnet.public_subnet[0].id
   depends_on    = [aws_internet_gateway.igw]
   tags = {
     Name        = "${var.project}-nat-gw"
@@ -97,3 +97,14 @@ resource "aws_route_table_association" "private_subnet_association" {
   route_table_id = aws_route_table.private_route_table.id
 }
 
+
+
+# #subnet group for rds
+# resource "aws_db_subnet_group" "rds_subnet_group" {
+#   name       = "${var.project}-rds-subnet-group"
+#   subnet_ids = aws_subnet.private_subnet[*].id
+#   tags = {
+#     Name        = "${var.project}-rds-subnet-group"
+#     Environment = var.environment
+#   }
+# }

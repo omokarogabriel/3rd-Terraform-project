@@ -65,3 +65,57 @@ variable "instance_type" {
   description = "instance type"
   type        = string
 }
+
+variable "key_name" {
+  description = "Name of the key pair to use for the instance"
+  type        = string
+}
+
+# variable "rds_allocated_storage" {
+#   description = "allocated storage for RDS"
+#   type        = number
+#   default     = 20
+# }
+
+# variable "rds_storage_type" {
+#   description = "storage type for RDS"
+#   type        = string
+#   default     = "gp3"
+
+# }
+
+# variable "rds_engine" {
+#   description = "RDS engine type"
+#   type        = string
+#   default     = "mysql"
+
+# }
+
+# variable "rds_engine_version" {
+#   description = "RDS engine version"
+#   type        = string
+#   default     = "8.0"
+# }
+# variable "rds_instance_class" {
+#   description = "RDS instance class"
+#   type        = string
+#   default     = "db.t3.micro"
+# }
+
+# variable "rds_username" {
+#   description = "RDS master username"
+#   type        = string
+#   sensitive   = true
+#   validation {
+#     condition     = length(var.rds_username) >= 1
+#     error_message = "RDS username must be at least 1 character long."
+#   }
+# }
+
+# variable "rds_password" {
+#   description = "RDS master password"
+#   type        = string
+#   sensitive   = true
+# }
+
+

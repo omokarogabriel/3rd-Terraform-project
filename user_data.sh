@@ -8,7 +8,27 @@ sudo apt-get update -y
 
 # Install necessary packages
 echo "Installing necessary packages..."
-sudo apt-get install -y git apache2 awscli
+sudo apt-get install -y git apache2 awscli 
+
+
+# # Get secret from AWS Secrets Manager
+# SECRET=$(aws secretsmanager get-secret-value \
+#   --secret-id rds-db-credentials \
+#   --region us-east-1 \
+#   --query SecretString \
+#   --output text)
+
+
+
+# # Extract username and password
+# DB_USER=$(echo $SECRET | jq -r .username)
+# DB_PASS=$(echo $SECRET | jq -r .password)
+
+
+# #Export these as environment variables
+# echo "export DB_USER=${DB_USER}" >> /etc/profile
+# echo "export DB_PASS=${DB_PASS}" >> /etc/profile
+
 
 # Start and enable Apache service
 echo "Starting and enabling Apache service..."
